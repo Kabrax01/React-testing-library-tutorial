@@ -8,11 +8,11 @@ import { render, screen } from "@testing-library/react";
 import Greet from "../../src/components/Greet";
 import "@testing-library/jest-dom/vitest";
 
-FILES:
+### FILES:
 
-vitest.config.ts 
+# vitest.config.ts 
 
-import { defineConfig } from "vitest/config";
+import { defineConfig } from "vitest/config"
 
 export default defineConfig({
     test: {
@@ -20,25 +20,27 @@ export default defineConfig({
         globals: true,
         setupFiles: "tests/setup.ts",
     },
-});
+})
 
 
 setup.ts       // IN tests
 
 //AFTER ADDING SETUP FILES TO vitest.config.ts
 
-import "@testing-library/jest-dom/vitest";
+import "@testing-library/jest-dom/vitest"
 
 
-!! ADD TO tsconfig.json  ===> "types": ["vitest/globals"],
+!! ADD TO tsconfig.json  ===> "types": ["vitest/globals"]
 
 
-EXTENSIONS: 
+### EXTENSIONS: 
 
-Testing Library Snippets 
+# Testing Library Snippets 
 
 
-SNIPPETS: 
-   itr = import { render, screen } from "@testing-library/react";
-   iv  = import { it, expect, describe } from 'vitest';
+# SNIPPETS: 
+   itr = import { render, screen } from "@testing-library/react"
+   iv  = import { it, expect, describe } from 'vitest'
    d   = describe('group', () => { })
+   qr  = screen.getByRole() and similar
+   qt  = screen.getByText() and similar
