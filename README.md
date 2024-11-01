@@ -36,7 +36,7 @@ export default defineConfig({
 })
 
 
-setup.ts       // IN tests
+### setup.ts       // IN tests folder
 
 //AFTER ADDING SETUP FILES TO vitest.config.ts
 
