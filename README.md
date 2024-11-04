@@ -11,6 +11,19 @@ package.json => scripts [ "test": "vitest", "test:ui": "vitest --ui" ]
 ##### npm i -D @testing-library/jest-dom
 
 
+//Solving resizeObserver error
+#### npm i -D resize-observer-polyfill
+
+//setup.ts
+import ResizeObserver from "resize-observer-polyfill";
+
+global.ResizeObserver = ResizeObserver;
+
+window.HTMLElement.prototype.scrollIntoView = vi.fn();
+window.HTMLElement.prototype.hasPointerCapture = vi.fn();
+window.HTMLElement.prototype.releasePointerCapture = vi.fn();
+
+
 IMPORT STATEMENTS:
 
 import { it, expect, describe } from "vitest";
