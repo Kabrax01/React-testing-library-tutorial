@@ -10,8 +10,10 @@ package.json => scripts [ "test": "vitest", "test:ui": "vitest --ui" ]
 
 ##### npm i -D @testing-library/jest-dom
 
-// Mock API
+//Mock API
 ##### npm i -D msw@2.1.6
+
+##### npm i -D @mswjs/data@0.16.1
 
 
 //Solving resizeObserver error
@@ -95,3 +97,12 @@ Vitest Snippets
    qr  = screen.getByRole() and similar
 
    qt  = screen.getByText() and similar
+
+
+# LINKS: 
+
+https://github.com/mswjs/data
+https://mswjs.io/
+https://vitest.dev/
+https://github.com/testing-library/jest-dom
+https://testing-library.com
