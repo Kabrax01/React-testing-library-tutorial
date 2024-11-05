@@ -10,6 +10,9 @@ package.json => scripts [ "test": "vitest", "test:ui": "vitest --ui" ]
 
 ##### npm i -D @testing-library/jest-dom
 
+// Mock API
+##### npm i -D msw@2.1.6
+
 
 //Solving resizeObserver error
 #### npm i -D resize-observer-polyfill
