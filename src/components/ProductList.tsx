@@ -1,41 +1,48 @@
 import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { Product } from "../entities";
+import { useQuery } from "react-query";
 
 const ProductList = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [isLoading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+    const { data, error, isLoading } = useQuery({
+        queryKey: ["products"],
+        queryFn: () =>
+            axios.get<Product[]>("/products").then((res) => res.data),
+    });
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        const { data } = await axios.get("/products");
-        setProducts(data);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        if (error instanceof AxiosError) setError(error.message);
-        else setError("An unexpected error occurred");
-      }
-    };
-    fetchProducts();
-  }, []);
+    const [products, setProducts] = useState<Product[]>([]);
+    const [isLoading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
-  if (isLoading) return <div>Loading...</div>;
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                setLoading(true);
+                const { data } = await axios.get("/products");
+                setProducts(data);
+                setLoading(false);
+            } catch (error) {
+                setLoading(false);
+                if (error instanceof AxiosError) setError(error.message);
+                else setError("An unexpected error occurred");
+            }
+        };
+        fetchProducts();
+    }, []);
 
-  if (error) return <div>Error: {error}</div>;
+    if (isLoading) return <div>Loading...</div>;
 
-  if (products.length === 0) return <p>No products available.</p>;
+    if (error) return <div>Error: {error}</div>;
 
-  return (
-    <ul>
-      {products.map((product) => (
-        <li key={product.id}>{product.name}</li>
-      ))}
-    </ul>
-  );
+    if (products.length === 0) return <p>No products available.</p>;
+
+    return (
+        <ul>
+            {products.map((product) => (
+                <li key={product.id}>{product.name}</li>
+            ))}
+        </ul>
+    );
 };
 
 export default ProductList;
