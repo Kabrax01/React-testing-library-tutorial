@@ -10,9 +10,9 @@ const ProductList = () => {
             axios.get<Product[]>("/products").then((res) => res.data),
     });
 
-    const [products, setProducts] = useState<Product[]>([]);
-    const [isLoading, setLoading] = useState(false);
-    const [error, setError] = useState("");
+    // const [products, setProducts] = useState<Product[]>([]);
+    // const [isLoading, setLoading] = useState(false);
+    // const [error, setError] = useState("");
 
     useEffect(() => {
         const fetchProducts = async () => {
