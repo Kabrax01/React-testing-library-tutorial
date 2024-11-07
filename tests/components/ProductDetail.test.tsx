@@ -7,6 +7,7 @@ import ProductDetail from "../../src/components/ProductDetail";
 import { http, HttpResponse, delay } from "msw";
 import { server } from "../mocks/server";
 import { db } from "../mocks/db";
+import AllProviders from "../AllProviders";
 
 describe("ProductDetail", () => {
     let product: { id: number; name: string; price: number };
@@ -20,7 +21,9 @@ describe("ProductDetail", () => {
     });
 
     it("should render the product details", async () => {
-        render(<ProductDetail productId={product.id} />);
+        render(<ProductDetail productId={product.id} />, {
+            wrapper: AllProviders,
+        });
 
         expect(
             await screen.findByText(new RegExp(product.name))
@@ -33,14 +36,14 @@ describe("ProductDetail", () => {
     it("should render message when product not found", async () => {
         server.use(http.get("/products/:id", () => HttpResponse.json(null)));
 
-        render(<ProductDetail productId={1} />);
+        render(<ProductDetail productId={1} />, { wrapper: AllProviders });
 
         const message = await screen.findByText(/not found/i);
         expect(message).toBeInTheDocument();
     });
 
     it("should render an error for invalid productId", async () => {
-        render(<ProductDetail productId={0} />);
+        render(<ProductDetail productId={0} />, { wrapper: AllProviders });
 
         const message = await screen.findByText(/invalid/i);
         expect(message).toBeInTheDocument();
@@ -49,7 +52,9 @@ describe("ProductDetail", () => {
     it("should render an error message when error occurs", async () => {
         server.use(http.get("/products/:id", () => HttpResponse.error()));
 
-        render(<ProductDetail productId={product.id} />);
+        render(<ProductDetail productId={product.id} />, {
+            wrapper: AllProviders,
+        });
 
         expect(await screen.findByText(/error/i)).toBeInTheDocument();
     });
@@ -62,13 +67,17 @@ describe("ProductDetail", () => {
             })
         );
 
-        render(<ProductDetail productId={product.id} />);
+        render(<ProductDetail productId={product.id} />, {
+            wrapper: AllProviders,
+        });
 
         expect(await screen.findByText(/loading/i)).toBeInTheDocument();
     });
 
     it("should remove the loading indicator when data fetching ends", async () => {
-        render(<ProductDetail productId={product.id} />);
+        render(<ProductDetail productId={product.id} />, {
+            wrapper: AllProviders,
+        });
 
         await waitForElementToBeRemoved(() => screen.getByText(/loading/i));
     });
@@ -76,7 +85,9 @@ describe("ProductDetail", () => {
     it("should remove loading indicator when data fetching fails", async () => {
         server.use(http.get("/product/:id", () => HttpResponse.error()));
 
-        render(<ProductDetail productId={product.id} />);
+        render(<ProductDetail productId={product.id} />, {
+            wrapper: AllProviders,
+        });
 
         await waitForElementToBeRemoved(() => screen.getByText(/loading/i));
     });
