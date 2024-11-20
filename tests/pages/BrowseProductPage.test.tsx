@@ -3,8 +3,6 @@ import {
     screen,
     waitForElementToBeRemoved,
 } from "@testing-library/react";
-import { http, delay, HttpResponse } from "msw";
-import { server } from "../mocks/server";
 import BrowseProducts from "../../src/pages/BrowseProductsPage";
 import { Theme } from "@radix-ui/themes";
 import userEvent from "@testing-library/user-event";
