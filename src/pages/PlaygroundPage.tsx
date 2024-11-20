@@ -6,10 +6,11 @@
 // import ToastDemo from "../components/ToastDemo";
 // import OrderStatusSelector from "../components/OrderStatusSelector";
 
-import BrowseProducts from "./BrowseProductsPage";
+import ProductForm from "../components/ProductForm";
+// import BrowseProducts from "./BrowseProductsPage";
 
 const PlaygroundPage = () => {
-    return <BrowseProducts />;
+    return <ProductForm />;
 };
 
 export default PlaygroundPage;
