@@ -50,6 +50,7 @@ const ProductForm = ({ product, onSubmit }: Props) => {
                 <label htmlFor="name">Name</label>
                 <TextField.Root className="max-w-sm">
                     <TextField.Input
+                        autoFocus
                         placeholder="Name"
                         id="name"
                         {...register("name")}
