@@ -14,6 +14,12 @@ describe("ProductForm", () => {
         });
 
         return {
+            expectErrorToBeInTheDocument: (errorMessage: RegExp) => {
+                const error = screen.getByRole("alert");
+                expect(error).toBeInTheDocument();
+                expect(error).toHaveTextContent(errorMessage);
+            },
+
             waitForFormToLoad: async () => {
                 await screen.findByRole("form");
 
@@ -117,14 +123,13 @@ describe("ProductForm", () => {
     ])(
         "should display an error if name is $scenario",
         async ({ name, errorMessage }) => {
-            const { waitForFormToLoad } = renderComponent();
+            const { waitForFormToLoad, expectErrorToBeInTheDocument } =
+                renderComponent();
 
             const form = await waitForFormToLoad();
             await form.fill({ ...form.validData, name });
 
-            const error = screen.getByRole("alert");
-            expect(error).toBeInTheDocument();
-            expect(error).toHaveTextContent(errorMessage);
+            expectErrorToBeInTheDocument(errorMessage);
         }
     );
 
@@ -151,14 +156,13 @@ describe("ProductForm", () => {
     ])(
         "should display an error if price is $scenario",
         async ({ price, errorMessage }) => {
-            const { waitForFormToLoad } = renderComponent();
+            const { waitForFormToLoad, expectErrorToBeInTheDocument } =
+                renderComponent();
 
             const form = await waitForFormToLoad();
             await form.fill({ ...form.validData, price });
 
-            const error = screen.getByRole("alert");
-            expect(error).toBeInTheDocument();
-            expect(error).toHaveTextContent(errorMessage);
+            expectErrorToBeInTheDocument(errorMessage);
         }
     );
 });
