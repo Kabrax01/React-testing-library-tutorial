@@ -7,7 +7,7 @@ import { Category } from "../../src/entities";
 import { db } from "../mocks/db";
 import ReduxProvider from "../../src/providers/ReduxProvider";
 import CategoryList from "../../src/components/CategoryList";
-import { simulateDelay, simulateError } from "../utils";
+import { simulateDelay, simulateError } from "../utils.tsx";
 
 describe("CategoryList", () => {
     const categories: Category[] = [];
