@@ -9,7 +9,7 @@ import userEvent from "@testing-library/user-event";
 import { db } from "../mocks/db";
 import { Category, Product } from "../../src/entities";
 import { CartProvider } from "../../src/providers/CartProvider";
-import { simulateDelay, simulateError } from "../utils";
+import { simulateDelay, simulateError } from "../utils.tsx";
 
 describe("BrowseProductPage", () => {
     const categories: Category[] = [];

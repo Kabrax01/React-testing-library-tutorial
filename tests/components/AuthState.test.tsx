@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { mockAuthState } from "../utils";
+import { mockAuthState } from "../utils.tsx";
 import AuthStatus from "../../src/components/AuthStatus";
 
 describe("AuthStatus", () => {
